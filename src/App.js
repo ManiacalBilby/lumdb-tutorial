@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 import logo from './logo.svg'
 import './App.css'
@@ -16,8 +17,13 @@ import rootReducer from './rootReducer'
 
 import MoviesList from './MoviesList'
 import MovieDetail from './MovieDetail'
+import Toggle from './Toggle'
 
-const store = createStore(rootReducer)
+const store = createStore(
+  rootReducer,
+  {},
+  composeWithDevTools(),
+)
 
 const App = () => (
   <Provider store={store}>
@@ -28,6 +34,7 @@ const App = () => (
             <img src={logo} className="App-logo" alt="logo" />
           </Link>
         </header>
+        <Toggle />
         <Switch>
           <Route exact path="/" component={MoviesList} />
           <Route path="/:id" component={MovieDetail} />
