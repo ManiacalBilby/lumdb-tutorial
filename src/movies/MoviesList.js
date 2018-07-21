@@ -9,8 +9,9 @@ import { getMovies } from './actions'
 
 class MoviesList extends PureComponent {
   componentDidMount() {
-    const oneHour = 1000 * 60 * 60;
-    if (this.props.isLoaded === false || ((new Date()) - new Date(this.props.moviesLoadedAt)) > oneHour) {
+    const refetchMovies = 1000 * 60 * 60;
+    if (this.props.isLoaded === false ||
+      ((new Date()) - new Date(this.props.moviesLoadedAt)) > refetchMovies) {
       this.props.getMovies();
     }
   }
